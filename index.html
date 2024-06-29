@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Issue Fixer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>GitHub Issue Fixer</h1>
+            <p>Generate AI-powered fixes for GitHub issues</p>
+        </header>
+        <main>
+            <form id="issueForm">
+                <div class="form-group">
+                    <label for="issueUrl">GitHub Issue URL:</label>
+                    <input type="url" id="issueUrl" required placeholder="https://github.com/owner/repo/issues/number">
+                </div>
+                <button type="submit" id="submitBtn">Generate Fix</button>
+            </form>
+            
+            <div id="loader" class="hidden">
+                <div class="spinner"></div>
+                <p>Processing issue and generating plan...</p>
+            </div>
+
+            <div id="plan" class="hidden">
+                <h2>Generated Plan</h2>
+                <div id="planContent"></div>
+                <button id="approveBtn" class="hidden">Approve and Implement Plan</button>
+            </div>
+
+            <div id="result" class="hidden">
+                <h2>Result</h2>
+                <div id="resultContent"></div>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2024 GitHub Issue Fixer. Powered by AI.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('issueForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const issueUrl = document.getElementById('issueUrl').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const loader = document.getElementById('loader');
+            const plan = document.getElementById('plan');
+            const planContent = document.getElementById('planContent');
+            const approveBtn = document.getElementById('approveBtn');
+            const result = document.getElementById('result');
+            const resultContent = document.getElementById('resultContent');
+            
+            submitBtn.disabled = true;
+            loader.classList.remove('hidden');
+            plan.classList.add('hidden');
+            result.classList.add('hidden');
+            
+            try {
+                const response = await fetch('/generate_fix', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ issueUrl }),
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    planContent.innerHTML = `<pre>${data.suggested_plan}</pre>`;
+                    plan.classList.remove('hidden');
+                    approveBtn.classList.remove('hidden');
+    
+                    approveBtn.onclick = async () => {
+                        approveBtn.disabled = true;
+                        loader.classList.remove('hidden');
+                        loader.querySelector('p').textContent = 'Implementing plan...';
+    
+                        try {
+                            const implementResponse = await fetch('/implement_plan', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ issueUrl }),
+                            });
+    
+                            const implementData = await implementResponse.json();
+    
+                            if (implementResponse.ok) {
+                                resultContent.innerHTML = `
+                                    <p>Fix implemented successfully!</p>
+                                    <p><strong>Pull Request:</strong> <a href="${implementData.pull_request_url}" target="_blank">${implementData.pull_request_url}</a></p>
+                                `;
+                                result.classList.remove('hidden');
+                            } else {
+                                throw new Error(implementData.error || 'Failed to implement plan');
+                            }
+                        } catch (error) {
+                            resultContent.innerHTML = `<p class="error">Error implementing plan: ${error.message}</p>`;
+                            result.classList.remove('hidden');
+                        } finally {
+                            approveBtn.disabled = false;
+                            loader.classList.add('hidden');
+                        }
+                    };
+                } else {
+                    throw new Error(data.error || 'Failed to generate plan');
+                }
+            } catch (error) {
+                resultContent.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+                result.classList.remove('hidden');
+            } finally {
+                submitBtn.disabled = false;
+                loader.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
