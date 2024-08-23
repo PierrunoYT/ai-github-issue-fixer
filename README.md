@@ -57,3 +57,24 @@ This tool uses OpenRouter to access AI models, which helps with rate limiting an
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+# GitHub Issue Fixer
+
+## ⚠️ Important Notice: Tool Currently Not Functioning ⚠️
+
+**Please Note:** This tool is currently not working as expected and requires fixes. We are aware of the issues and are working on resolving them. We apologize for any inconvenience this may cause.
+
+If you encounter any specific problems or have any suggestions, please feel free to open an issue in this repository. We appreciate your patience and understanding as we work to improve the tool.
+
+## About
+
+This tool is designed to automatically process and fix GitHub issues using AI assistance. It integrates with the GitHub API and uses AI to generate and implement fixes for issues.
+
+## Current Status
+
+- The tool is non-functional and needs repairs.
+- We are actively working on identifying and resolving the issues.
+- There is no estimated time for when the tool will be operational again.
+
+We will update this README when significant progress is made or when the tool is back in working condition.
+
+Thank you for your interest in this project!
