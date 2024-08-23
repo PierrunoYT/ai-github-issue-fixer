@@ -1,80 +1,53 @@
 
 # GitHub Issue Fixer
 
-This tool automatically generates fixes for GitHub issues using AI and creates pull requests with the suggested changes.
+## ⚠️ Important Notice: Project Under Maintenance ⚠️
 
-## Prerequisites
+This project is currently **not operational** and is undergoing significant maintenance and improvements. We appreciate your interest and patience during this process.
 
-- Python 3.7+
-- GitHub account and personal access token
-- OpenRouter API key
+## About the Project
 
-## Setup
-
-1. Clone this repository
-2. Install the required packages:
-   ```
-   pip install -r requirements.txt
-   ```
-3. Create a `.env` file in the project root with the following content:
-   ```
-   GITHUB_TOKEN=your_github_token_here
-   OPENROUTER_API_KEY=your_openrouter_api_key_here
-   ```
-
-## Usage
-
-1. Start the server:
-   ```
-   python server.py
-   ```
-2. Open a web browser and navigate to `http://localhost:5000`
-3. Enter a GitHub issue URL in the format `https://github.com/owner/repo/issues/number`
-4. Click "Generate Fix" to process the issue
-
-The tool will:
-1. Clone the repository
-2. Analyze the issue
-3. Generate a fix using AI (via OpenRouter)
-4. Create a new branch
-5. Commit the changes
-6. Create a pull request with the suggested fix
-
-## Note on OpenRouter
-
-This tool uses OpenRouter to access AI models, which helps with rate limiting and provides more flexibility. Make sure to sign up for an OpenRouter account and obtain an API key before using this tool.
-
-## Security Considerations
-
-- This tool clones repositories and executes AI-generated code. Use it only with trusted repositories and review all suggested changes before merging.
-- The tool includes basic code sanitization, but it's recommended to thoroughly review any generated code before running or merging it.
-
-## Limitations
-
-- Currently, the tool assumes the fix will be applied to a file named `main.py`. This may need to be adjusted based on the specific issue and repository structure.
-- The AI-generated fixes may not always be correct or complete. Always review the suggestions before merging.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-# GitHub Issue Fixer
-
-## ⚠️ Important Notice: Tool Currently Not Functioning ⚠️
-
-**Please Note:** This tool is currently not working as expected and requires fixes. We are aware of the issues and are working on resolving them. We apologize for any inconvenience this may cause.
-
-If you encounter any specific problems or have any suggestions, please feel free to open an issue in this repository. We appreciate your patience and understanding as we work to improve the tool.
-
-## About
-
-This tool is designed to automatically process and fix GitHub issues using AI assistance. It integrates with the GitHub API and uses AI to generate and implement fixes for issues.
+The GitHub Issue Fixer is an innovative tool designed to automate the process of fixing GitHub issues using AI assistance. It integrates with the GitHub API and leverages advanced AI models to analyze issues, generate potential fixes, and create pull requests with suggested changes.
 
 ## Current Status
 
-- The tool is non-functional and needs repairs.
-- We are actively working on identifying and resolving the issues.
-- There is no estimated time for when the tool will be operational again.
+- **Non-operational:** The tool is not functioning as intended and requires extensive fixes.
+- **Under active development:** Our team is working diligently to address known issues and improve the overall functionality.
+- **No estimated completion date:** We are unable to provide a timeline for when the tool will be fully operational again.
 
-We will update this README when significant progress is made or when the tool is back in working condition.
+## Key Features (When Operational)
 
-Thank you for your interest in this project!
+- Automatic issue analysis and fix generation
+- Integration with GitHub repositories
+- AI-powered code suggestions
+- Automated pull request creation
+
+## Technical Stack
+
+- Python 3.7+
+- Flask web framework
+- GitHub API
+- OpenRouter API for AI model access
+
+## Getting Involved
+
+While the project is not currently accepting contributions, we welcome your interest:
+
+- **Stay Updated:** Watch this repository for updates on our progress.
+- **Report Issues:** If you've previously used the tool and encountered specific problems, please open an issue to help us in our repair efforts.
+- **Provide Feedback:** We're open to suggestions for improvements or new features. Feel free to open an issue for discussion.
+
+## Future Plans
+
+We are committed to bringing this tool back online with improved reliability and functionality. Our goals include:
+
+1. Enhancing the AI model integration for more accurate fix suggestions
+2. Improving error handling and user feedback
+3. Expanding the range of issues the tool can effectively address
+4. Implementing more robust security measures
+
+## Contact
+
+For any urgent inquiries or if you need more information about the project's status, please open an issue in this repository.
+
+Thank you for your understanding and continued interest in the GitHub Issue Fixer project. We look forward to sharing a fully operational and improved version in the future.
